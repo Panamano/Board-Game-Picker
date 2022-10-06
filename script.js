@@ -63,7 +63,7 @@ const createToolsArea = () => {
 
   const editBtn = document.createElement("button");
   editBtn.classList.add("edit");
-  editBtn.textContent = "EDIT";
+  editBtn.textContent = "EDYCJA";
 
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("delete");
