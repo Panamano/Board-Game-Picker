@@ -9,6 +9,9 @@ let popupInput;
 let popupAddBtn;
 let popupCloseBtn;
 let todoToEdit;
+// const xxx = ulList.map(x=>x.textContent);
+// console.log(xxx);
+// console.log(typeof xxx);
 
 const main = () => {
   prepareDOMElements();
@@ -26,6 +29,9 @@ const prepareDOMElements = () => {
   popupInput = document.querySelector(".popup-input");
   popupAddBtn = document.querySelector(".accept");
   popupCloseBtn = document.querySelector(".cancel");
+
+  pickBtn = document.querySelector(".pick");
+  result = document.querySelector(".result");
 };
 
 const prepareDOMEvents = () => {
@@ -34,6 +40,7 @@ const prepareDOMEvents = () => {
   popupCloseBtn.addEventListener("click", closePopup);
   popupAddBtn.addEventListener("click", changeTodoText);
   todoInput.addEventListener("keyup", enterKeyCheck);
+  pickBtn.addEventListener("click", picker);
 };
 
 const addNewTodo = () => {
@@ -46,7 +53,7 @@ const addNewTodo = () => {
 
     todoInput.value = "";
     errorInfo.textContent = "";
-    console.log(ulList);
+    // console.log(ulList);
   } else {
     errorInfo.textContent = "Wpisz treść zadania";
   }
@@ -120,13 +127,25 @@ const changeTodoText = () => {
 const deleteTodo = (e) => {
   e.target.closest("li").remove();
   const allTodos = document.querySelectorAll("li");
-  console.log(typeof allTodos);
-  if (allTodos.length === 0) errorInfo.textContent = "Brak zadań na liście.";
+  if (allTodos.length === 0) {
+    errorInfo.textContent = "Brak zadań na liście.";
+  }
 };
 
 const enterKeyCheck = (e) => {
   if (e.key === "Enter") {
     addNewTodo();
+  }
+};
+
+const picker = () => {
+  const xxx = document.getElementsByTagName("li");
+  if (xxx.length !== 0) {
+    let number = Math.floor(Math.random() * xxx.length);
+    result.textContent = xxx[number].innerText.replace("EDYCJA", "");
+    console.log(typeof xxx);
+    console.log(xxx.length);
+    console.log(xxx);
   }
 };
 
